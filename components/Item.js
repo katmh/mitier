@@ -14,8 +14,16 @@ export default class Item extends React.Component {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <p className="number">{this.props.number}</p>
-            <p className="title">{this.props.title}</p>
+            <span
+              className="del"
+              onClick={() => this.props.removeCourse(this.props.number)}
+            >
+              ✕
+            </span>
+            <div>
+              <p className="number">{this.props.number}</p>
+              <p className="title">{this.props.title}</p>
+            </div>
             <style jsx>{`
               .item {
                 border-radius: 2px;
@@ -26,10 +34,21 @@ export default class Item extends React.Component {
                 height: auto;
                 box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%),
                   0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+                display: flex;
+                align-items: start;
               }
               p {
                 font-size: 1.1rem;
                 line-height: 25px;
+              }
+              .del {
+                margin: 4px 7px 3px 2px;
+                font-size: 12px;
+                color: #ccc;
+                background: rgba(0, 0, 0, 0.4);
+                display: inline-block;
+                padding: 2px 4px;
+                border-radius: 40px;
               }
               .number {
                 font-weight: bold;

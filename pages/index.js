@@ -29,6 +29,14 @@ const Index = () => {
       S: [...tiers.S, number],
     });
   };
+  const removeCourse = (tier, number) => {
+    console.log(`removing ${number} from ${tier}`);
+    console.log(tiers[tier]);
+    setTiers({
+      ...tiers,
+      [tier]: tiers[tier].filter((c) => c != number),
+    });
+  };
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
@@ -72,6 +80,7 @@ const Index = () => {
             const color = tierColors[tierName];
             return (
               <Row
+                removeCourse={removeCourse}
                 key={tierName}
                 title={tierName}
                 items={tiers[tierName]}

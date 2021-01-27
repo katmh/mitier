@@ -4,6 +4,12 @@ import courses from "../data/courses.json";
 import { Droppable } from "react-beautiful-dnd";
 
 export default class Row extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  removeFromTier(number) {
+    this.props.removeCourse(this.props.title, number);
+  }
   render() {
     return (
       <div className="row">
@@ -24,6 +30,7 @@ export default class Row extends React.Component {
                     number={number}
                     index={index}
                     title={title}
+                    removeCourse={this.removeFromTier.bind(this)}
                   />
                 );
               })}
