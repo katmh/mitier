@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Column from "../components/Column";
 import { DragDropContext } from "react-beautiful-dnd";
-import initialData from "../components/initial-data";
 
 const Index = () => {
   const initialTiers = {
@@ -21,8 +20,23 @@ const Index = () => {
   };
   const [tiers, setTiers] = useState(initialTiers);
   const onDragEnd = (result) => {
-    // todo
-    console.log("ok");
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    let newItemOrder = tiers[destination.droppableId];
+    newItemOrder.splice(source.index, 1);
+    newItemOrder.splice(destination.index, 0, draggableId);
+    setTiers({
+      ...tiers,
+      [destination.droppableId]: newItemOrder,
+    });
   };
   return (
     <div>
