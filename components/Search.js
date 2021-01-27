@@ -22,7 +22,7 @@ export default class Search extends React.Component {
     this.setState({ loading: true });
 
     // API call
-    // TODO: cache results
+    // TODO: cache results?
     const url = `/api/courses/?query=${encodeURIComponent(query)}`;
     const response = await axios.get(url).catch(() => {
       alert("Unfortunately, an error occured :(");
@@ -37,7 +37,7 @@ export default class Search extends React.Component {
     });
   }
 
-  // hide menu with "Esc"; TODO: state doesn't seem to propagate to children anymore
+  // hide menu with "Esc"
   // TODO: hide menu when clicking outside the component
   componentDidMount() {
     document.addEventListener("keydown", this.escapeMenu, false);

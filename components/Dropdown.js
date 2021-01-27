@@ -4,7 +4,7 @@ export default class Dropdown extends React.Component {
   render() {
     return (
       <ul
-        className={"results" + (this.props.menuHidden && " hidden")}
+        className={"results" + (this.props.menuHidden ? " hidden" : "")}
         onChange={this.props.selectCourse}
       >
         {this.props.results.map((course) => (
