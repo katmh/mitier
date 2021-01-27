@@ -36,13 +36,10 @@ const Index = () => {
       </header>
       <section>
         <DragDropContext onDragEnd={onDragEnd}>
-          {initialData.columnOrder.map((columnId) => {
-            const column = initialData.columns[columnId];
-            const tasks = column.taskIds.map(
-              (taskId) => initialData.tasks[taskId]
+          {Object.keys(tiers).map((tierName) => {
+            return (
+              <Column key={tierName} title={tierName} items={tiers[tierName]} />
             );
-
-            return <Column key={column.id} column={column} tasks={tasks} />;
           })}
         </DragDropContext>
       </section>

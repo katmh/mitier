@@ -4,14 +4,14 @@ import { Draggable } from "react-beautiful-dnd";
 export default class Task extends React.Component {
   render() {
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+      <Draggable draggableId={this.props.number} index={this.props.index}>
         {(provided) => (
           <div
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            {this.props.task.content}
+            {this.props.number}
             <style jsx>{`
               div {
                 border: 1px solid lightgrey;
