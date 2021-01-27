@@ -1,5 +1,5 @@
+import Row from "../components/Row";
 import React, { useState } from "react";
-import Column from "../components/Column";
 import { DragDropContext } from "react-beautiful-dnd";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -7,7 +7,7 @@ resetServerContext();
 
 const Index = () => {
   const initialTiers = {
-    S: ["6.0001", "CMS.614"], // course numbers as IDs
+    S: ["6.0001", "CMS.614J"], // course numbers as IDs
     A: [],
     B: [],
     C: [],
@@ -67,8 +67,14 @@ const Index = () => {
       <section>
         <DragDropContext onDragEnd={onDragEnd}>
           {Object.keys(tiers).map((tierName) => {
+            const color = tierColors[tierName];
             return (
-              <Column key={tierName} title={tierName} items={tiers[tierName]} />
+              <Row
+                key={tierName}
+                title={tierName}
+                items={tiers[tierName]}
+                color={color}
+              />
             );
           })}
         </DragDropContext>
