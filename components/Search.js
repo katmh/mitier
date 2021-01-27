@@ -19,29 +19,41 @@ export default class Search extends React.Component {
     console.log(response.data);
     this.setState({ results: response.data });
   }
+
+  handleSelect(e) {
+    this.props.addClass(e.target.value);
+  }
+
   render() {
     return (
-      <div>
+      <div className="select-search">
         <input
+          className="ss_input"
           id="search"
           name="search"
           type="text"
           placeholder="Search courses"
           onChange={this.handleChange}
         />
-        <div className="results">
+        <select className="results" onChange={this.handleSelect.bind(this)}>
           {this.state.results.map((course) => (
-            <div key={course.number}>
+            <option key={course.number} value={course.number}>
               {course.number} {course.title}
-            </div>
+            </option>
           ))}
-        </div>
+        </select>
         <style jsx>{`
-          .results {
-            position: absolute;
-            width: 200px;
-            top: 0;
-            right: 0;
+          select {
+            appearance: none;
+            background-color: transparent;
+            padding: 0 1em 0 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            -webkit-appearance: menulist-button;
           }
         `}</style>
       </div>

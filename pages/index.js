@@ -64,7 +64,7 @@ const Index = () => {
   return (
     <div>
       <header>
-        <Search onChange={addClass} />
+        <Search addClass={addClass} />
       </header>
       <section>
         <DragDropContext onDragEnd={onDragEnd}>
