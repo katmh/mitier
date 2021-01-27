@@ -1,5 +1,7 @@
 import axios from "axios";
 import React from "react";
+import Dropdown from "./Dropdown";
+import SearchInput from "./SearchInput";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -35,7 +37,8 @@ export default class Search extends React.Component {
     });
   }
 
-  // hide menu with "Esc"
+  // hide menu with "Esc"; TODO: state doesn't seem to propagate to children anymore
+  // TODO: hide menu when clicking outside the component
   componentDidMount() {
     document.addEventListener("keydown", this.escapeMenu, false);
   }
@@ -56,91 +59,12 @@ export default class Search extends React.Component {
   render() {
     return (
       <div>
-        <div id="search_container">
-          <input
-            id="search"
-            name="search"
-            type="text"
-            placeholder="Search courses"
-            onChange={this.search}
-          />
-          <p className={"loading" + (!this.state.loading && " hidden")}>
-            Loading...
-          </p>
-        </div>
-        <ul
-          className={"results" + (this.state.menuHidden && " hidden")}
-          onChange={this.selectCourse}
-        >
-          {this.state.results.map((course) => (
-            <li className="option">
-              <input
-                key={course.number}
-                type="checkbox"
-                value={course.number}
-                id={course.number}
-                name={course.number}
-              />
-              <label htmlFor={course.number}>
-                {course.number} {course.title}
-              </label>
-            </li>
-          ))}
-        </ul>
-        <style jsx>{`
-          #search_container {
-            display: flex;
-          }
-
-          #search {
-            padding: 0.5rem 0.6rem;
-            border-radius: 2px;
-            color: #222;
-            border: 1px solid #aaa;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 25rem;
-          }
-
-          .loading {
-            margin-left: 0.5rem;
-            font-style: italic;
-            color: #444;
-          }
-
-          ul {
-            display: block;
-            overflow-y: scroll;
-            position: absolute;
-            float: left;
-            max-height: 25rem;
-          }
-
-          .hidden {
-            display: none;
-          }
-
-          li {
-            list-style: none;
-          }
-
-          label {
-            display: block;
-            max-width: 400px;
-            padding: 0.5rem;
-            background: #eee;
-            transition: 0.1s;
-            cursor: pointer;
-          }
-
-          label:hover {
-            background: #ddd;
-          }
-
-          input[type="checkbox"] {
-            display: none;
-          }
-        `}</style>
+        <SearchInput onChange={this.search} loading={this.state.loading} />
+        <Dropdown
+          menuHidden={this.state.menuHidden}
+          selectCourse={this.selectCourse}
+          results={this.state.results}
+        />
       </div>
     );
   }
