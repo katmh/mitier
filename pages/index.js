@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Column from "../components/Column";
 import { DragDropContext } from "react-beautiful-dnd";
+import { resetServerContext } from "react-beautiful-dnd";
+
+resetServerContext();
 
 const Index = () => {
   const initialTiers = {
@@ -30,13 +33,26 @@ const Index = () => {
     ) {
       return;
     }
-    let newItemOrder = tiers[destination.droppableId];
-    newItemOrder.splice(source.index, 1);
-    newItemOrder.splice(destination.index, 0, draggableId);
-    setTiers({
-      ...tiers,
-      [destination.droppableId]: newItemOrder,
-    });
+
+    let newDestOrder = tiers[destination.droppableId];
+    let newSourceOrder = tiers[source.droppableId];
+    if (destination === source) {
+      newDestOrder.splice(source.index, 1);
+      newDestOrder.splice(destination.index, 0, draggableId);
+      setTiers({
+        ...tiers,
+        [destination.droppableId]: newDestOrder,
+      });
+    } else {
+      newSourceOrder.splice(source.index, 1);
+      newDestOrder.splice(destination.index, 0, draggableId);
+
+      setTiers({
+        ...tiers,
+        [destination.droppableId]: newDestOrder,
+        [source.droppableId]: newSourceOrder,
+      });
+    }
   };
   return (
     <div>
