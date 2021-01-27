@@ -1,5 +1,6 @@
 import Row from "../components/Row";
 import React, { useState } from "react";
+import Search from "../components/Search";
 import { DragDropContext } from "react-beautiful-dnd";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -57,12 +58,7 @@ const Index = () => {
   return (
     <div>
       <header>
-        <input
-          type="text"
-          placeholder="Search classes..."
-          // value={query}
-          // onChange={onSearch}
-        />
+        <Search />
       </header>
       <section>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -79,6 +75,11 @@ const Index = () => {
           })}
         </DragDropContext>
       </section>
+      <style jsx>{`
+        header {
+          margin-bottom: 2rem;
+        }
+      `}</style>
     </div>
   );
 };
