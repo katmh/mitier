@@ -41,8 +41,8 @@ export default class Row extends React.Component {
           }
           .title {
             background: ${this.props.color};
-            padding: 1.5rem;
-            width: 4rem;
+            padding: 3rem 1rem;
+            width: 5rem;
             text-align: center;
             font: bold 1.25rem/1 sans-serif;
             border-right: 1px solid #111;
@@ -53,6 +53,7 @@ export default class Row extends React.Component {
             padding: 1rem;
             display: flex;
             flex-wrap: wrap;
+            align-items: flex-start;
           }
         `}</style>
       </div>
