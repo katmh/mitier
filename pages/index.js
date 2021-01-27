@@ -23,6 +23,12 @@ const Index = () => {
     D: "#beff7f",
   };
   const [tiers, setTiers] = useState(initialTiers);
+  const addClass = (number) => {
+    setTiers({
+      ...tiers,
+      S: [...tiers.S, number],
+    });
+  };
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
@@ -58,7 +64,7 @@ const Index = () => {
   return (
     <div>
       <header>
-        <Search />
+        <Search onChange={addClass} />
       </header>
       <section>
         <DragDropContext onDragEnd={onDragEnd}>

@@ -10,7 +10,6 @@ const options = courses.map((course) => ({
   value: course.number,
   name: `${course.number} ${course.title}`,
 }));
-
 export default class Search extends React.Component {
   render() {
     return (
@@ -19,6 +18,7 @@ export default class Search extends React.Component {
         name="course"
         placeholder="Search courses"
         search
+        onChange={(val) => this.props.onChange(val)}
       />
     );
   }
