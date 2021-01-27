@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "next": "^10.0.5",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^17.0.1",
+    "react-search": "^2.1.1",
     "react-select-search": "^2.2.4"
   }
 }
