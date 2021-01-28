@@ -1,7 +1,7 @@
 import Row from "../components/Row";
 import SEO from "../components/SEO";
 import React, { useState } from "react";
-import Search from "../components/Search";
+import Header from "../components/Header";
 import { DragDropContext } from "react-beautiful-dnd";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -85,7 +85,7 @@ const Index = () => {
   return (
     <>
       <SEO />
-      <Search addCourse={addCourse} />
+      <Header addCourse={addCourse} />
       <DragDropContext onDragEnd={onDragEnd}>
         {Object.keys(tiers).map((tierName) => (
           <Row

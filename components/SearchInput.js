@@ -27,7 +27,12 @@ export default class SearchInput extends React.Component {
             border: 1px solid #aaa;
             font-size: 1rem;
             width: 100%;
-            max-width: 25rem;
+          }
+
+          @media (min-width: 30rem) {
+            #search {
+              width: 25rem;
+            }
           }
 
           #loading {

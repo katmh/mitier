@@ -48,8 +48,9 @@ export default class Row extends React.Component {
           }
           .title {
             background: ${this.props.color};
-            padding: 3rem 1rem;
+            padding: 3.5rem 0;
             width: 5rem;
+            max-width: 7.5vw;
             text-align: center;
             font: bold 1.25rem/1 sans-serif;
             border-right: 1px solid #111;

@@ -3,7 +3,7 @@ import courses from "../../data/courses.json";
 export default function handler(req, res) {
   const query = req.query.query.toLowerCase();
   if (!query) {
-    return;
+    res.status(200).json({});
   }
   const results = courses.filter(
     (course) =>
