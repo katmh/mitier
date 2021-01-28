@@ -2,6 +2,7 @@ import Row from "../components/Row";
 import SEO from "../components/SEO";
 import React, { useState } from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { DragDropContext } from "react-beautiful-dnd";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -97,6 +98,7 @@ const Index = () => {
           />
         ))}
       </DragDropContext>
+      <Footer />
     </>
   );
 };

@@ -18,3 +18,5 @@ npm run dev
 ## Issues and Contributing
 
 To report a bug or request a feature, making an issue is probably the way to go. Contributions  are welcome (feel free to make a pull request or open an issue to discuss) but I don't have any contributor guidelines yet.
+
+Stylistic note: Some components are classes and others are functions. I prefer functional but the drag-and-drop library wasn't playing nice with them.
