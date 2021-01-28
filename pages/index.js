@@ -31,6 +31,10 @@ const Index = () => {
   const [tiers, setTiers] = useState(INITIAL_TIERS);
 
   const addCourse = (number) => {
+    if (Object.values(tiers).flat().includes(number)) {
+      alert(`You've already added ${number}`);
+      return;
+    }
     setTiers({
       ...tiers,
       S: [...tiers.S, number],
