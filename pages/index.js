@@ -1,49 +1,56 @@
-import Head from "next/head";
 import Row from "../components/Row";
+import SEO from "../components/SEO";
 import React, { useState } from "react";
 import Search from "../components/Search";
 import { DragDropContext } from "react-beautiful-dnd";
 import { resetServerContext } from "react-beautiful-dnd";
 
+// since Next.js uses SSR
+// https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/reset-server-context.md
 resetServerContext();
 
+// default courses
+const INITIAL_TIERS = {
+  S: ["8.01", "8.02", "18.01", "18.02", "7.012", "5.111"], // course numbers as IDs
+  A: [],
+  B: [],
+  C: [],
+  D: [],
+};
+
+// thanks https://colorswall.com/palette/3297/
+const TIER_COLORS = {
+  S: "#ff7f7e",
+  A: "#ffbf7f",
+  B: "#ffdf80",
+  C: "#feff7f",
+  D: "#beff7f",
+};
+
 const Index = () => {
-  const initialTiers = {
-    S: ["8.01", "8.02", "18.01", "18.02", "7.012", "5.111"], // course numbers as IDs
-    A: [],
-    B: [],
-    C: [],
-    D: [],
-  };
-  const tierColors = {
-    // thanks https://colorswall.com/palette/3297/
-    S: "#ff7f7e",
-    A: "#ffbf7f",
-    B: "#ffdf80",
-    C: "#feff7f",
-    D: "#beff7f",
-  };
-  const [tiers, setTiers] = useState(initialTiers);
-  const addClass = (number) => {
+  const [tiers, setTiers] = useState(INITIAL_TIERS);
+
+  const addCourse = (number) => {
     setTiers({
       ...tiers,
       S: [...tiers.S, number],
     });
   };
   const removeCourse = (tier, number) => {
-    console.log(`removing ${number} from ${tier}`);
-    console.log(tiers[tier]);
     setTiers({
       ...tiers,
       [tier]: tiers[tier].filter((c) => c != number),
     });
   };
+
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
+      // e.g. item was dragged outside a Droppable
       return;
     }
     if (
+      // i.e. no change
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
@@ -70,55 +77,23 @@ const Index = () => {
       });
     }
   };
-  const META = {
-    title: `MITier: Tier rank MIT classes`,
-    description: `All in the title`,
-    url: `https://mitier.vercel.app`,
-    siteName: `MITier`,
-    image: `https://mitier.vercel.app/screenshot.jpg`,
-    imageAlt: `Example tier list of MIT classes`,
-  };
+
   return (
-    <div>
-      <Head>
-        <title>{META.title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-        <meta property="og:title" content={META.title} />
-        <meta property="og:description" content={META.description} />
-        <meta property="og:image" content={META.image} />
-        <meta property="og:url" content={META.url} />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        <meta property="og:site_name" content={META.siteName} />
-        <meta name="twitter:image" content={META.image} />
-        <meta name="twitter:image:alt" content={META.imageAlt} />
-      </Head>
-      <header>
-        <Search addClass={addClass} />
-      </header>
-      <section>
-        <DragDropContext onDragEnd={onDragEnd}>
-          {Object.keys(tiers).map((tierName) => {
-            const color = tierColors[tierName];
-            return (
-              <Row
-                removeCourse={removeCourse}
-                key={tierName}
-                title={tierName}
-                items={tiers[tierName]}
-                color={color}
-              />
-            );
-          })}
-        </DragDropContext>
-      </section>
-      <style jsx>{`
-        header {
-          margin-bottom: 2rem;
-        }
-      `}</style>
-    </div>
+    <>
+      <SEO />
+      <Search addCourse={addCourse} />
+      <DragDropContext onDragEnd={onDragEnd}>
+        {Object.keys(tiers).map((tierName) => (
+          <Row
+            removeCourse={removeCourse}
+            key={tierName}
+            title={tierName}
+            items={tiers[tierName]}
+            color={TIER_COLORS[tierName]}
+          />
+        ))}
+      </DragDropContext>
+    </>
   );
 };
 

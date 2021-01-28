@@ -52,20 +52,25 @@ export default class Search extends React.Component {
   }
 
   selectCourse(e) {
-    this.props.addClass(e.target.value);
+    this.props.addCourse(e.target.value);
     this.setState({ menuHidden: true });
   }
 
   render() {
     return (
-      <div>
+      <header>
         <SearchInput onChange={this.search} loading={this.state.loading} />
         <Dropdown
           menuHidden={this.state.menuHidden}
           selectCourse={this.selectCourse}
           results={this.state.results}
         />
-      </div>
+        <style jsx>{`
+          header {
+            margin-bottom: 2rem;
+          }
+        `}</style>
+      </header>
     );
   }
 }
