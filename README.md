@@ -6,7 +6,7 @@ Colors are from [Courseroad](https://github.com/sipb/courseroad2/blob/master/src
 
 ## Installation
 
-This is a Next.js (React) app using NPM. It's all client-side except for an [API route](https://nextjs.org/docs/api-routes/introduction) (see `/pages/api`) that filters the courses dataset.
+This is a Next.js (React) app using NPM. Everything happens on the front-end except for an [API route](https://nextjs.org/docs/api-routes/introduction) (see `/pages/api`) that filters the courses dataset.
 
 ```
 git clone https://github.com/katmh/mitier
