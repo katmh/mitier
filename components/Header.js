@@ -23,6 +23,7 @@ export default class Header extends React.Component {
 
     const query = event.target.value;
     if (!query) {
+      this.setState({ loading: false });
       return;
     }
 
@@ -64,12 +65,12 @@ export default class Header extends React.Component {
   }
   handleEsc(event) {
     if (event.keyCode === 27) {
-      this.setState({ menuHidden: true });
+      this.setState({ menuHidden: true, loading: false });
     }
   }
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-      this.setState({ menuHidden: true });
+      this.setState({ menuHidden: true, loading: false });
     }
   }
 
