@@ -44,13 +44,15 @@ The file contains a list of objects, whose keys are `id`, `number`, and `title`.
 ]
 ```
 
+If you're wondering how to get this data for your school, it might be helpful to see the `/data` README, where I describe how I got the data for MIT.
+
 ### 2. Fork/clone this repo and customize `config.js`
 
 Fork on GitHub or clone in your CLI with `git clone https://github.com/katmh/mitier`. In the file `config.js`, located in the root directory, you can customize the page heading, social sharing info, default classes, tier colors, and more.
 
 ### 3. Handle course color-coding
 
-The original/MIT version uses colors from [Courseroad](https://courseroad.mit.edu/), a popular course planning website we have. One can find the department of a class by reading everything before the dot in a course number, e.g. `WGS.101`'s department is `WGS`, `16.06`'s department is `16`. In `data/colors.json`, departments are mapped to hex codes. They're then used in `Item.js`.
+The original/MIT version uses colors from [Courseroad](https://courseroad.mit.edu/), a popular course planning website we have. One can find the department of a class by reading everything before the dot in a course number, e.g. `WGS.101`'s department is `WGS`, `16.06`'s department is `16`. In `data/colors.json`, departments are mapped to hex codes. They're then used in `components/Item.js`.
 
 **If you want colors,** you can figure out how to extract the subject/department/whatever-determines-the-color from a course's ID/number and write code to do that in `components/Item.js`. Then modify `data/colors.json` to have the right department-to-color pairs.
 
