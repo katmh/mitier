@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import CONFIG from "../config";
 import Dropdown from "./Dropdown";
 import SearchInput from "./SearchInput";
 import debounce from "../utils/debounce";
@@ -83,7 +84,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-        <h1>MITier: Tier rank MIT classes</h1>
+        <h1>{CONFIG.HEADING}</h1>
         <div id="search">
           <div ref={this.wrapperRef}>
             <SearchInput

@@ -1,4 +1,5 @@
 import React from "react";
+import CONFIG from "../config";
 
 export default class Dropdown extends React.Component {
   render() {
@@ -23,7 +24,9 @@ export default class Dropdown extends React.Component {
               </label>
             </li>
           ))}
-        {!haveResults && <p className="label">No results :(</p>}
+        {!haveResults && (
+          <p className="label">{CONFIG.SEARCH.NO_RESULTS_MESSAGE}</p>
+        )}
         <style jsx>{`
           ul {
             display: block;

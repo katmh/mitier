@@ -1,4 +1,5 @@
 import React from "react";
+import CONFIG from "../config";
 
 export default class SearchInput extends React.Component {
   render() {
@@ -8,11 +9,11 @@ export default class SearchInput extends React.Component {
           id="search"
           name="search"
           type="text"
-          placeholder="Search courses"
+          placeholder={CONFIG.SEARCH.INPUT_PLACEHOLDER}
           onChange={this.props.onChange}
         />
         <p id="loading" className={!this.props.loading && " hidden"}>
-          Loading...
+          {CONFIG.SEARCH.LOADING_MESSAGE}
         </p>
         <style jsx>{`
           #search_container {

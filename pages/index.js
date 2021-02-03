@@ -1,3 +1,4 @@
+import CONFIG from "../config";
 import Row from "../components/Row";
 import SEO from "../components/SEO";
 import React, { useState } from "react";
@@ -10,26 +11,8 @@ import { resetServerContext } from "react-beautiful-dnd";
 // https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/reset-server-context.md
 resetServerContext();
 
-// default courses
-const INITIAL_TIERS = {
-  S: ["8.01", "8.02", "18.01", "18.02", "7.012", "5.111"], // course IDs
-  A: [],
-  B: [],
-  C: [],
-  D: [],
-};
-
-// thanks https://colorswall.com/palette/3297/
-const TIER_COLORS = {
-  S: "#ff7f7e",
-  A: "#ffbf7f",
-  B: "#ffdf80",
-  C: "#feff7f",
-  D: "#beff7f",
-};
-
 const Index = () => {
-  const [tiers, setTiers] = useState(INITIAL_TIERS);
+  const [tiers, setTiers] = useState(CONFIG.INITIAL_TIERS);
 
   const addCourse = (id) => {
     if (Object.values(tiers).flat().includes(id)) {
@@ -94,7 +77,7 @@ const Index = () => {
             key={tierName}
             title={tierName}
             items={tiers[tierName]}
-            color={TIER_COLORS[tierName]}
+            color={CONFIG.TIER_COLORS[tierName]}
           />
         ))}
       </DragDropContext>
