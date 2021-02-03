@@ -4,6 +4,8 @@ import { Draggable } from "react-beautiful-dnd";
 
 export default class Item extends React.Component {
   render() {
+    // to forgo color-coding, you could delete `subject` and set `color`
+    // to a constant color value, e.g. "#bbb"
     const subject = this.props.number.split(".")[0]; // for MIT
     const color = colors[subject];
     return (
