@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import Dropdown from "./Dropdown";
 import SearchInput from "./SearchInput";
+import debounce from "../utils/debounce";
 
 let cache = {}; // map search query to class IDs
 
@@ -83,7 +84,10 @@ export default class Header extends React.Component {
     return (
       <header>
         <div ref={this.wrapperRef}>
-          <SearchInput onChange={this.search} loading={this.state.loading} />
+          <SearchInput
+            onChange={debounce(this.search)}
+            loading={this.state.loading}
+          />
           <Dropdown
             menuHidden={this.state.menuHidden}
             selectCourse={this.selectCourse}
