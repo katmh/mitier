@@ -2,16 +2,17 @@ import React from "react";
 
 export default class Dropdown extends React.Component {
   render() {
+    const haveResults = this.props.results.length;
     return (
       <ul
         className={"results" + (this.props.menuHidden ? " hidden" : "")}
         onChange={this.props.selectCourse}
       >
-        {this.props.results.length ? (
+        {haveResults &&
           this.props.results.map((course) => (
             <li className="option">
               <input
-                key={course.number}
+                key={course.id}
                 type="checkbox"
                 value={course.number}
                 id={course.number}
@@ -21,10 +22,8 @@ export default class Dropdown extends React.Component {
                 {course.number} {course.title}
               </label>
             </li>
-          ))
-        ) : (
-          <p className="label">No results :(</p>
-        )}
+          ))}
+        {!haveResults && <p className="label">No results :(</p>}
         <style jsx>{`
           ul {
             display: block;

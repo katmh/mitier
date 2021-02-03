@@ -4,9 +4,10 @@ import { Draggable } from "react-beautiful-dnd";
 
 export default class Item extends React.Component {
   render() {
-    const color = colors[this.props.number.split(".")[0]];
+    const subject = this.props.number.split(".")[0]; // for MIT
+    const color = colors[subject];
     return (
-      <Draggable draggableId={this.props.number} index={this.props.index}>
+      <Draggable draggableId={this.props.id} index={this.props.index}>
         {(provided) => (
           <div
             className="item"
@@ -16,7 +17,7 @@ export default class Item extends React.Component {
           >
             <span
               className="del"
-              onClick={() => this.props.removeCourse(this.props.number)}
+              onClick={() => this.props.removeCourse(this.props.id)}
             >
               ✕
             </span>

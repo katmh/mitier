@@ -7,8 +7,8 @@ export default class Row extends React.Component {
   constructor(props) {
     super(props);
   }
-  removeFromTier(number) {
-    this.props.removeCourse(this.props.title, number);
+  removeFromTier(id) {
+    this.props.removeCourse(this.props.title, id);
   }
   render() {
     return (
@@ -21,15 +21,15 @@ export default class Row extends React.Component {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {this.props.items.map((number, index) => {
-                const arr = courses.find((course) => course.number == number);
-                const title = arr ? arr.title : "";
+              {this.props.items.map((id, index) => {
+                const course = courses.find((course) => course.id == id);
                 return (
                   <Item
-                    key={number}
-                    number={number}
+                    key={course.id}
+                    id={course.id}
+                    number={course.number}
                     index={index}
-                    title={title}
+                    title={course.title}
                     removeCourse={this.removeFromTier.bind(this)}
                   />
                 );

@@ -12,7 +12,7 @@ resetServerContext();
 
 // default courses
 const INITIAL_TIERS = {
-  S: ["8.01", "8.02", "18.01", "18.02", "7.012", "5.111"], // course numbers as IDs
+  S: ["8.01", "8.02", "18.01", "18.02", "7.012", "5.111"], // course IDs
   A: [],
   B: [],
   C: [],
@@ -31,20 +31,20 @@ const TIER_COLORS = {
 const Index = () => {
   const [tiers, setTiers] = useState(INITIAL_TIERS);
 
-  const addCourse = (number) => {
-    if (Object.values(tiers).flat().includes(number)) {
-      alert(`You've already added ${number}`);
+  const addCourse = (id) => {
+    if (Object.values(tiers).flat().includes(id)) {
+      alert(`You've already added ${id}`);
       return;
     }
     setTiers({
       ...tiers,
-      S: [...tiers.S, number],
+      S: [...tiers.S, id],
     });
   };
-  const removeCourse = (tier, number) => {
+  const removeCourse = (tier, id) => {
     setTiers({
       ...tiers,
-      [tier]: tiers[tier].filter((c) => c != number),
+      [tier]: tiers[tier].filter((c) => c != id),
     });
   };
 
