@@ -83,22 +83,33 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-        <div ref={this.wrapperRef}>
-          <SearchInput
-            onChange={debounce(this.search)}
-            loading={this.state.loading}
-          />
-          <Dropdown
-            menuHidden={this.state.menuHidden}
-            selectCourse={this.selectCourse}
-            results={this.state.results}
-          />
+        <h1>MITier: Tier rank MIT classes</h1>
+        <div id="search">
+          <div ref={this.wrapperRef}>
+            <SearchInput
+              onChange={debounce(this.search)}
+              loading={this.state.loading}
+            />
+            <Dropdown
+              menuHidden={this.state.menuHidden}
+              selectCourse={this.selectCourse}
+              results={this.state.results}
+            />
+          </div>
+          <div></div>
         </div>
-        <div></div>
         <style jsx>{`
           header {
             padding: 0 1rem;
             margin-bottom: 2rem;
+          }
+
+          h1 {
+            margin-bottom: 0.75rem;
+            color: #222;
+          }
+
+          #search {
             display: flex;
             justify-content: space-between;
           }
