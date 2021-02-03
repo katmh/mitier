@@ -7,20 +7,24 @@ export default class Dropdown extends React.Component {
         className={"results" + (this.props.menuHidden ? " hidden" : "")}
         onChange={this.props.selectCourse}
       >
-        {this.props.results.map((course) => (
-          <li className="option">
-            <input
-              key={course.number}
-              type="checkbox"
-              value={course.number}
-              id={course.number}
-              name={course.number}
-            />
-            <label htmlFor={course.number}>
-              {course.number} {course.title}
-            </label>
-          </li>
-        ))}
+        {this.props.results.length ? (
+          this.props.results.map((course) => (
+            <li className="option">
+              <input
+                key={course.number}
+                type="checkbox"
+                value={course.number}
+                id={course.number}
+                name={course.number}
+              />
+              <label htmlFor={course.number}>
+                {course.number} {course.title}
+              </label>
+            </li>
+          ))
+        ) : (
+          <p className="label">No results :(</p>
+        )}
         <style jsx>{`
           ul {
             display: block;
@@ -34,11 +38,15 @@ export default class Dropdown extends React.Component {
             list-style: none;
           }
 
-          label {
+          label,
+          .label {
             display: block;
             max-width: 400px;
             padding: 0.5rem;
             background: #eee;
+          }
+
+          label {
             transition: 0.1s;
             cursor: pointer;
           }
