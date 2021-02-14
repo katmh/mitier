@@ -9,6 +9,7 @@ export default class SearchInput extends React.Component {
           id="search"
           name="search"
           type="text"
+          autocomplete="off"
           placeholder={CONFIG.SEARCH.INPUT_PLACEHOLDER}
           onChange={this.props.onChange}
         />
