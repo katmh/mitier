@@ -1,7 +1,9 @@
+import CONFIG from "../config";
+
 const Footer = () => (
   <footer>
     <p>
-      <a href="https://github.com/katmh/mitier">source code</a>
+      <a href={CONFIG.SOURCE_CODE_URL}>source code</a>
     </p>
     <style jsx>{`
       footer {
